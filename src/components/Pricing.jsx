@@ -76,7 +76,7 @@ export default function Pricing() {
           transition={{ duration: 0.5 }}
         >
           <span className={`text-xs sm:text-sm font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full border mb-4 inline-block ${
-            isDark ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400' : 'bg-cyan-100 border-cyan-200 text-cyan-800'
+            isDark ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-300' : 'bg-cyan-100 border-cyan-300 text-cyan-900'
           }`}>
             Transparent Value Tiers
           </span>
@@ -85,7 +85,7 @@ export default function Pricing() {
           }`}>
             Invest in Engineering Excellence
           </h2>
-          <p className={`mt-4 text-base sm:text-lg ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+          <p className={`mt-4 text-base sm:text-lg ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
             Select a project package built for immediate speed and enterprise return.
           </p>
         </motion.div>
@@ -93,16 +93,17 @@ export default function Pricing() {
 
       {/* Annual / One-Time Toggle Switch */}
       <div className="flex items-center justify-center space-x-4 mb-16">
-        <span className={`text-sm font-semibold ${!isAnnual ? (isDark ? 'text-white' : 'text-slate-900') : 'text-gray-400'}`}>
+        <span className={`text-sm font-semibold ${!isAnnual ? (isDark ? 'text-white' : 'text-slate-900') : (isDark ? 'text-gray-400' : 'text-slate-600')}`}>
           Standard Billing
         </span>
 
         <button
           onClick={() => setIsAnnual(!isAnnual)}
-          className={`w-14 h-8 flex items-center rounded-full p-1 transition-colors duration-300 ${
-            isAnnual ? 'bg-blue-600' : isDark ? 'bg-white/10' : 'bg-slate-300'
+          className={`w-14 h-8 flex items-center rounded-full p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+            isAnnual ? 'bg-blue-600' : isDark ? 'bg-white/20' : 'bg-slate-300'
           }`}
-          aria-label="Toggle annual discount"
+          aria-label={isAnnual ? 'Switch to Standard Billing' : 'Switch to Accelerated Growth 20% Discount Billing'}
+          aria-pressed={isAnnual}
         >
           <motion.div
             className="w-6 h-6 rounded-full bg-white shadow-md"
@@ -112,10 +113,10 @@ export default function Pricing() {
         </button>
 
         <div className="flex items-center space-x-2">
-          <span className={`text-sm font-semibold ${isAnnual ? (isDark ? 'text-white' : 'text-slate-900') : 'text-gray-400'}`}>
+          <span className={`text-sm font-semibold ${isAnnual ? (isDark ? 'text-white' : 'text-slate-900') : (isDark ? 'text-gray-400' : 'text-slate-600')}`}>
             Accelerated Growth
           </span>
-          <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+          <span className="text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">
             Save 20%
           </span>
         </div>
@@ -137,13 +138,13 @@ export default function Pricing() {
                   ? 'gradient-border-glow border-2 border-blue-500 shadow-2xl lg:-translate-y-4'
                   : isDark
                   ? 'border-white/10'
-                  : 'border-blue-100 bg-white/80'
+                  : 'border-blue-200 bg-white/90 shadow-md'
               }`}
             >
               {/* Featured Badge */}
               {plan.highlighted && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full gradient-bg-blue text-white text-xs font-bold uppercase tracking-wider shadow-lg flex items-center space-x-1.5 z-20">
-                  <Sparkles className="w-3.5 h-3.5" />
+                  <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>{plan.badge}</span>
                 </div>
               )}
@@ -153,19 +154,19 @@ export default function Pricing() {
                 <div className="flex items-center justify-between mb-4">
                   <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full ${
                     plan.highlighted
-                      ? 'bg-blue-500/20 text-blue-400'
+                      ? 'bg-blue-500/20 text-blue-700 dark:text-blue-300'
                       : isDark
-                      ? 'bg-white/5 text-gray-400'
-                      : 'bg-blue-50 text-blue-700'
+                      ? 'bg-white/5 text-gray-300'
+                      : 'bg-blue-100 text-blue-900'
                   }`}>
                     {!plan.highlighted && plan.badge}
                     {plan.highlighted && 'Recommended Plan'}
                   </span>
-                  <PlanIcon className={`w-6 h-6 ${plan.highlighted ? 'text-blue-500' : 'text-gray-400'}`} />
+                  <PlanIcon className={`w-6 h-6 ${plan.highlighted ? 'text-blue-600' : (isDark ? 'text-gray-400' : 'text-slate-600')}`} aria-hidden="true" />
                 </div>
 
                 <h3 className={`text-2xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>{plan.name}</h3>
-                <p className={`text-xs sm:text-sm leading-relaxed mb-6 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+                <p className={`text-xs sm:text-sm leading-relaxed mb-6 ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
                   {plan.description}
                 </p>
 
@@ -175,17 +176,17 @@ export default function Pricing() {
                     <span className={`text-4xl sm:text-5xl font-black tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
                       {plan.price}
                     </span>
-                    <span className={`text-xs uppercase font-semibold ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                    <span className={`text-xs uppercase font-semibold ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
                       / {plan.period}
                     </span>
                   </div>
                 </div>
 
                 {/* Features List */}
-                <ul className="space-y-3.5 mb-8" aria-label={`${plan.name} features`}>
+                <ul className="space-y-3.5 mb-8" aria-label={`${plan.name} package features`}>
                   {plan.features.map((feature, fIdx) => (
-                    <li key={fIdx} className={`flex items-start space-x-3 text-sm ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
-                      <div className="p-1 rounded-full bg-blue-500/20 text-blue-500 mt-0.5">
+                    <li key={fIdx} className={`flex items-start space-x-3 text-sm ${isDark ? 'text-gray-200' : 'text-slate-800'}`}>
+                      <div className="p-1 rounded-full bg-blue-500/20 text-blue-600 dark:text-blue-400 mt-0.5" aria-hidden="true">
                         <Check className="w-3.5 h-3.5" />
                       </div>
                       <span className="leading-snug">{feature}</span>
@@ -198,17 +199,17 @@ export default function Pricing() {
               <div>
                 <a
                   href="#contact"
-                  className={`w-full inline-flex items-center justify-center space-x-2 py-4 rounded-full text-sm font-bold transition-all duration-300 focus:outline-none focus:ring-2 ${
+                  className={`w-full inline-flex items-center justify-center space-x-2 py-4 rounded-full text-sm font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                     plan.highlighted
                       ? 'gradient-bg-blue text-white shadow-lg shadow-blue-500/30 hover:scale-[1.02] neo-button'
                       : isDark
                       ? 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
-                      : 'bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200'
+                      : 'bg-blue-100 hover:bg-blue-200 text-blue-900 border border-blue-300'
                   }`}
                   aria-label={`Select ${plan.name} pricing package`}
                 >
                   <span>{plan.cta}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </a>
               </div>
             </motion.div>

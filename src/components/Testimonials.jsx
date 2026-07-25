@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Quote, Star, TrendingUp, Award, CheckCircle2 } from 'lucide-react';
+import { Quote, Star, TrendingUp } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 export default function Testimonials() {
@@ -15,7 +15,7 @@ export default function Testimonials() {
       author: 'Marcus Vance',
       title: 'VP of Product',
       company: 'Fintech Velocity',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80',
       badge: 'Fintech & SaaS',
     },
     {
@@ -26,7 +26,7 @@ export default function Testimonials() {
       author: 'Elena Rostova',
       title: 'Chief Technology Officer',
       company: 'Aura Luxury Retail',
-      avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80',
+      avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=120&h=120&q=80',
       badge: 'E-Commerce',
     },
     {
@@ -37,7 +37,7 @@ export default function Testimonials() {
       author: 'David Chen',
       title: 'Founder & CEO',
       company: 'Nexus AI Systems',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80',
       badge: 'AI & Enterprise',
     },
   ];
@@ -58,7 +58,7 @@ export default function Testimonials() {
           transition={{ duration: 0.5 }}
         >
           <span className={`text-xs sm:text-sm font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full border mb-4 inline-block ${
-            isDark ? 'bg-purple-500/10 border-purple-500/20 text-purple-400' : 'bg-purple-100 border-purple-200 text-purple-700'
+            isDark ? 'bg-purple-500/10 border-purple-500/20 text-purple-300' : 'bg-purple-100 border-purple-300 text-purple-900'
           }`}>
             Proven Growth & Impact
           </span>
@@ -67,7 +67,7 @@ export default function Testimonials() {
           }`}>
             Real Results Delivered to Market Leaders
           </h2>
-          <p className={`mt-4 text-base sm:text-lg ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+          <p className={`mt-4 text-base sm:text-lg ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
             Quantifiable growth, engineering benchmarks, and testimonial evidence from our partners.
           </p>
         </motion.div>
@@ -80,13 +80,13 @@ export default function Testimonials() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
         className={`mb-16 p-8 rounded-3xl border glass-card relative overflow-hidden ${
-          isDark ? 'border-white/10' : 'border-blue-200 bg-white/80'
+          isDark ? 'border-white/10' : 'border-blue-200 bg-white/90 shadow-lg'
         }`}
       >
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
           <div>
-            <div className="flex items-center space-x-2 text-blue-500 text-xs font-bold uppercase tracking-wider mb-1">
-              <TrendingUp className="w-4 h-4" />
+            <div className="flex items-center space-x-2 text-blue-600 text-xs font-bold uppercase tracking-wider mb-1">
+              <TrendingUp className="w-4 h-4" aria-hidden="true" />
               <span>Aggregate Growth Trajectory</span>
             </div>
             <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
@@ -94,7 +94,7 @@ export default function Testimonials() {
             </h3>
           </div>
           <div className="flex items-center space-x-3 text-xs font-semibold">
-            <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
+            <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-700 dark:text-blue-300 border border-blue-500/30">
               Q1 - Q4 Benchmark
             </span>
           </div>
@@ -102,7 +102,7 @@ export default function Testimonials() {
 
         {/* Animated Line Chart SVG */}
         <div className="relative w-full h-48 sm:h-56">
-          <svg className="w-full h-full overflow-visible" viewBox="0 0 800 200" preserveAspectRatio="none">
+          <svg className="w-full h-full overflow-visible" viewBox="0 0 800 200" preserveAspectRatio="none" role="img" aria-label="Growth trajectory chart showing 3.4x conversion lift">
             <defs>
               <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.4" />
@@ -110,19 +110,16 @@ export default function Testimonials() {
               </linearGradient>
             </defs>
 
-            {/* Grid lines */}
-            <line x1="0" y1="50" x2="800" y2="50" stroke={isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} strokeDasharray="4 4" />
-            <line x1="0" y1="100" x2="800" y2="100" stroke={isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} strokeDasharray="4 4" />
-            <line x1="0" y1="150" x2="800" y2="150" stroke={isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} strokeDasharray="4 4" />
+            <line x1="0" y1="50" x2="800" y2="50" stroke={isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'} strokeDasharray="4 4" />
+            <line x1="0" y1="100" x2="800" y2="100" stroke={isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'} strokeDasharray="4 4" />
+            <line x1="0" y1="150" x2="800" y2="150" stroke={isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'} strokeDasharray="4 4" />
 
-            {/* Filled Area */}
             <path d="M0 180 Q 200 160, 400 100 T 800 20 L 800 200 L 0 200 Z" fill="url(#chartGradient)" />
 
-            {/* Growth Curve Line */}
             <motion.path
               d="M0 180 Q 200 160, 400 100 T 800 20"
               fill="none"
-              stroke="#3B82F6"
+              stroke="#2563EB"
               strokeWidth="4"
               initial={{ pathLength: 0 }}
               whileInView={{ pathLength: 1 }}
@@ -130,10 +127,9 @@ export default function Testimonials() {
               transition={{ duration: 1.5, ease: 'easeInOut' }}
             />
 
-            {/* Pulsing Data Points */}
-            <circle cx="200" cy="160" r="6" fill="#38BDF8" />
-            <circle cx="400" cy="100" r="7" fill="#3B82F6" />
-            <circle cx="800" cy="20" r="8" fill="#8B5CF6" />
+            <circle cx="200" cy="160" r="6" fill="#0284C7" />
+            <circle cx="400" cy="100" r="7" fill="#2563EB" />
+            <circle cx="800" cy="20" r="8" fill="#7C3AED" />
           </svg>
         </div>
       </motion.div>
@@ -148,30 +144,30 @@ export default function Testimonials() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.15 }}
             className={`p-8 rounded-3xl flex flex-col justify-between border relative overflow-hidden glass-card ${
-              isDark ? 'border-white/10' : 'border-blue-100 bg-white/80'
+              isDark ? 'border-white/10' : 'border-blue-200 bg-white/90 shadow-md'
             }`}
           >
             {/* Category Tag */}
             <div className="flex items-center justify-between mb-6">
               <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${
-                isDark ? 'bg-white/5 border-white/10 text-gray-300' : 'bg-blue-50 border-blue-200 text-blue-800'
+                isDark ? 'bg-white/5 border-white/10 text-gray-200' : 'bg-blue-100 border-blue-300 text-blue-900'
               }`}>
                 {item.badge}
               </span>
-              <div className="flex items-center space-x-1 text-amber-400">
+              <div className="flex items-center space-x-1 text-amber-500" aria-label="5 out of 5 stars rating">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-500" aria-hidden="true" />
                 ))}
               </div>
             </div>
 
             {/* Metric Highlight */}
             <div className="mb-6">
-              <span className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 tracking-tight block">
+              <span className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 tracking-tight block">
                 {item.metric}
               </span>
               <span className={`text-xs font-bold uppercase tracking-wider mt-1 block ${
-                isDark ? 'text-gray-400' : 'text-slate-500'
+                isDark ? 'text-gray-300' : 'text-slate-700'
               }`}>
                 {item.metricLabel}
               </span>
@@ -179,9 +175,9 @@ export default function Testimonials() {
 
             {/* Blockquote */}
             <blockquote className={`text-sm leading-relaxed mb-8 flex-grow italic relative ${
-              isDark ? 'text-gray-300' : 'text-slate-700'
+              isDark ? 'text-gray-200' : 'text-slate-800'
             }`}>
-              <Quote className="w-8 h-8 opacity-10 absolute -top-4 -left-2 pointer-events-none" />
+              <Quote className="w-8 h-8 opacity-10 absolute -top-4 -left-2 pointer-events-none" aria-hidden="true" />
               "{item.quote}"
             </blockquote>
 
@@ -190,14 +186,18 @@ export default function Testimonials() {
               <img
                 src={item.avatar}
                 alt={item.author}
-                className="w-12 h-12 rounded-full object-cover border border-blue-400/30"
+                width="48"
+                height="48"
+                loading="lazy"
+                decoding="async"
+                className="w-12 h-12 rounded-full object-cover border border-blue-400/40"
               />
               <div>
                 <h4 className={`text-sm font-bold leading-snug ${isDark ? 'text-white' : 'text-slate-900'}`}>
                   {item.author}
                 </h4>
-                <p className={`text-xs ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
-                  {item.title}, <span className="text-blue-500 font-semibold">{item.company}</span>
+                <p className={`text-xs ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
+                  {item.title}, <span className="text-blue-600 font-bold">{item.company}</span>
                 </p>
               </div>
             </div>
