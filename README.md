@@ -28,24 +28,23 @@
 
 ## Lighthouse Audit Screenshots
 
-### Desktop Audit Results
+### Desktop Audit Results (4 Pages)
 
-#### Overall Score (100 Performance | 91 Accessibility | 100 Best Practices | 100 SEO)
-![Lighthouse Desktop Overview](./docs/lighthouse/desktop-score.png)
+| 1. Overall Audit Scores | 2. Performance Metrics & Diagnostics |
+| :---: | :---: |
+| <img src="./docs/lighthouse/desktop-1-score.png" width="100%" alt="Desktop Score Overview" style="border: 2px solid #30363d; border-radius: 8px;" /> | <img src="./docs/lighthouse/desktop-2-metrics.png" width="100%" alt="Desktop Performance Metrics" style="border: 2px solid #30363d; border-radius: 8px;" /> |
+| **3. Accessibility Audit** | **4. Best Practices & SEO** |
+| <img src="./docs/lighthouse/desktop-3-accessibility.png" width="100%" alt="Desktop Accessibility Details" style="border: 2px solid #30363d; border-radius: 8px;" /> | <img src="./docs/lighthouse/desktop-4-seo.png" width="100%" alt="Desktop Best Practices and SEO" style="border: 2px solid #30363d; border-radius: 8px;" /> |
 
-#### Performance Metrics & Diagnostics
-![Lighthouse Desktop Metrics](./docs/lighthouse/desktop-metrics.png)
+---
 
-#### Accessibility Audit Details
-![Lighthouse Desktop Accessibility](./docs/lighthouse/desktop-accessibility.png)
+### Mobile Audit Results (4 Pages)
 
-#### Best Practices & SEO Breakdown
-![Lighthouse Desktop Best Practices and SEO](./docs/lighthouse/desktop-seo-practices.png)
-
-### Mobile Audit Results
-
-#### Overall Score (99 Performance | 91 Accessibility | 100 Best Practices | 100 SEO)
-![Lighthouse Mobile Audit](./docs/lighthouse/mobile-score.png)
+| 1. Overall Audit Scores | 2. Performance Metrics & Diagnostics |
+| :---: | :---: |
+| <img src="./docs/lighthouse/mobile-1-score.png" width="100%" alt="Mobile Score Overview" style="border: 2px solid #30363d; border-radius: 8px;" /> | <img src="./docs/lighthouse/mobile-2-metrics.png" width="100%" alt="Mobile Performance Metrics" style="border: 2px solid #30363d; border-radius: 8px;" /> |
+| **3. Accessibility Audit** | **4. Best Practices & SEO** |
+| <img src="./docs/lighthouse/mobile-3-accessibility.png" width="100%" alt="Mobile Accessibility Details" style="border: 2px solid #30363d; border-radius: 8px;" /> | <img src="./docs/lighthouse/mobile-4-seo.png" width="100%" alt="Mobile Best Practices and SEO" style="border: 2px solid #30363d; border-radius: 8px;" /> |
 
 ---
 
