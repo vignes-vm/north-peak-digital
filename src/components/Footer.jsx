@@ -1,0 +1,98 @@
+import React from 'react';
+import { Mountain, Globe, Mail, Share2, ExternalLink } from 'lucide-react';
+
+export default function Footer() {
+  return (
+    <footer className="bg-[#080B11] border-t border-white/10 text-gray-400 pt-16 pb-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+          {/* Brand Col */}
+          <div className="md:col-span-5 space-y-4">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center text-white shadow-lg">
+                <Mountain className="w-6 h-6" />
+              </div>
+              <span className="text-xl font-bold tracking-tight text-white">
+                North Peak <span className="text-blue-500">Digital</span>
+              </span>
+            </div>
+            <p className="text-sm text-gray-400 max-w-sm leading-relaxed">
+              Engineering high-performance web products, scalable platforms, and bespoke growth engines for modern digital leaders.
+            </p>
+          </div>
+
+          {/* Quick Navigation Links */}
+          <div className="md:col-span-3 space-y-3">
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider">Navigation</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="#services" className="hover:text-white transition-colors">Services</a>
+              </li>
+              <li>
+                <a href="#results" className="hover:text-white transition-colors">Results & Case Studies</a>
+              </li>
+              <li>
+                <a href="#pricing" className="hover:text-white transition-colors">Pricing Plans</a>
+              </li>
+              <li>
+                <a href="#contact" className="hover:text-white transition-colors">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social Links */}
+          <div className="md:col-span-4 space-y-3">
+            <h4 className="text-sm font-bold text-white uppercase tracking-wider">Connect</h4>
+            <div className="flex items-center space-x-4">
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                aria-label="GitHub Profile"
+              >
+                <Globe className="w-5 h-5" />
+              </a>
+              <a
+                href="mailto:hello@northpeakdigital.com"
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                aria-label="Email Contact"
+              >
+                <Mail className="w-5 h-5" />
+              </a>
+              <a
+                href="https://digitalheroesco.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                aria-label="Share Agency Profile"
+              >
+                <Share2 className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Bottom Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+          <p>© {new Date().getFullYear()} North Peak Digital Agency. All rights reserved.</p>
+
+          {/* Mandatory Task Requirement */}
+          <div className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300">
+            <span>Built for Digital Heroes Training Task</span>
+            <a
+              href="https://digitalheroesco.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center underline hover:text-white font-semibold ml-1 transition-colors"
+              aria-label="Digital Heroes Website"
+            >
+              <span>digitalheroesco.com</span>
+              <ExternalLink className="w-3 h-3 ml-0.5" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
