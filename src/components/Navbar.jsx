@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowUpRight, Mountain } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Mountain, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +34,9 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#0B0F17]/85 backdrop-blur-md border-b border-white/10 py-4 shadow-xl shadow-black/20'
+          ? isDark
+            ? 'bg-[#060913]/85 backdrop-blur-md border-b border-white/10 py-4 shadow-xl shadow-black/30'
+            : 'bg-white/85 backdrop-blur-md border-b border-blue-100 py-4 shadow-md shadow-blue-500/5'
           : 'bg-transparent py-6'
       }`}
     >
@@ -44,10 +48,12 @@ export default function Navbar() {
             className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg p-1"
             aria-label="North Peak Digital Home"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-300">
               <Mountain className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors">
+            <span className={`text-xl font-bold tracking-tight transition-colors ${
+              isDark ? 'text-white' : 'text-slate-900'
+            }`}>
               North Peak <span className="text-blue-500">Digital</span>
             </span>
           </a>
@@ -58,18 +64,43 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative py-1 focus:outline-none focus:text-white after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-500 hover:after:w-full after:transition-all after:duration-300"
+                className={`text-sm font-medium transition-colors relative py-1 focus:outline-none after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-500 hover:after:w-full after:transition-all after:duration-300 ${
+                  isDark
+                    ? 'text-gray-300 hover:text-white'
+                    : 'text-slate-600 hover:text-blue-600'
+                }`}
               >
                 {link.name}
               </a>
             ))}
           </nav>
 
-          {/* Desktop Call to Action */}
+          {/* Action Buttons: Theme Toggle & CTA */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Theme Switcher Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className={`p-2.5 rounded-full border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                isDark
+                  ? 'bg-white/5 border-white/10 text-yellow-400 hover:bg-white/10'
+                  : 'bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100'
+              }`}
+              aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              <motion.div
+                key={isDark ? 'dark' : 'light'}
+                initial={{ rotate: -90, scale: 0.8 }}
+                animate={{ rotate: 0, scale: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </motion.div>
+            </button>
+
+            {/* CTA Button */}
             <a
               href="#contact"
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white gradient-button focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#0B0F17]"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white gradient-bg-blue neo-button focus:outline-none focus:ring-2 focus:ring-blue-400"
               aria-label="Start your digital project"
             >
               <span>Get Started</span>
@@ -77,15 +108,29 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile Actions: Theme Toggle & Hamburger */}
+          <div className="flex items-center space-x-2 md:hidden">
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded-full border transition-colors ${
+                isDark ? 'bg-white/5 border-white/10 text-yellow-400' : 'bg-blue-50 border-blue-200 text-blue-700'
+              }`}
+              aria-label="Toggle light and dark theme"
+            >
+              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
+
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`p-2 rounded-lg transition-colors ${
+                isDark ? 'text-gray-300 hover:text-white hover:bg-white/10' : 'text-slate-700 hover:text-blue-600 hover:bg-blue-50'
+              }`}
+              aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -97,7 +142,11 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-[#0B0F17]/95 border-b border-white/10 backdrop-blur-xl px-4 pt-4 pb-6 space-y-4 shadow-2xl"
+            className={`md:hidden border-b px-4 pt-4 pb-6 space-y-4 shadow-2xl backdrop-blur-xl ${
+              isDark
+                ? 'bg-[#060913]/95 border-white/10'
+                : 'bg-white/95 border-blue-100'
+            }`}
           >
             <nav className="flex flex-col space-y-3" aria-label="Mobile Navigation">
               {navLinks.map((link) => (
@@ -105,7 +154,11 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-md transition-colors"
+                  className={`text-base font-medium px-3 py-2 rounded-md transition-colors ${
+                    isDark
+                      ? 'text-gray-300 hover:text-white hover:bg-white/5'
+                      : 'text-slate-700 hover:text-blue-600 hover:bg-blue-50'
+                  }`}
                 >
                   {link.name}
                 </a>
@@ -115,7 +168,7 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center space-x-2 px-5 py-3 rounded-full text-sm font-semibold text-white gradient-button shadow-lg shadow-blue-500/25"
+                className="w-full flex items-center justify-center space-x-2 px-5 py-3 rounded-full text-sm font-semibold text-white gradient-bg-blue shadow-lg shadow-blue-500/25"
                 aria-label="Start your digital project mobile CTA"
               >
                 <span>Get Started</span>

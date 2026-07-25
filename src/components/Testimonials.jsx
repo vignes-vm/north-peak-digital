@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Quote, Star, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { Quote, Star, TrendingUp, Award, CheckCircle2 } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Testimonials() {
+  const { isDark } = useTheme();
+
   const caseStudies = [
     {
       metric: '+340%',
@@ -28,7 +31,7 @@ export default function Testimonials() {
     },
     {
       metric: '$4.2M',
-      metricLabel: 'Arr Added in 90 Days',
+      metricLabel: 'ARR Added in 90 Days',
       quote:
         'From brand identity to cloud infra, North Peak executed seamlessly. They operate like elite co-founders who care about profit metrics as much as pixel precision.',
       author: 'David Chen',
@@ -42,7 +45,9 @@ export default function Testimonials() {
   return (
     <section id="results" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[25rem] bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[25rem] rounded-full blur-3xl pointer-events-none ${
+        isDark ? 'bg-indigo-600/10' : 'bg-cyan-200/30'
+      }`} />
 
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-16 relative z-10">
@@ -52,19 +57,88 @@ export default function Testimonials() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <span className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-purple-400 mb-3 block">
-            Proven Impact & ROI
+          <span className={`text-xs sm:text-sm font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full border mb-4 inline-block ${
+            isDark ? 'bg-purple-500/10 border-purple-500/20 text-purple-400' : 'bg-purple-100 border-purple-200 text-purple-700'
+          }`}>
+            Proven Growth & Impact
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Client Success Stories & Quantifiable Results
+          <h2 className={`text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight ${
+            isDark ? 'text-white' : 'text-slate-900'
+          }`}>
+            Real Results Delivered to Market Leaders
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-gray-400">
-            Don't just take our word for it. Here is how we accelerate growth for high-stakes digital ventures.
+          <p className={`mt-4 text-base sm:text-lg ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+            Quantifiable growth, engineering benchmarks, and testimonial evidence from our partners.
           </p>
         </motion.div>
       </div>
 
-      {/* Testimonials / Results Grid */}
+      {/* Animated SVG Growth Curve Diagram Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className={`mb-16 p-8 rounded-3xl border glass-card relative overflow-hidden ${
+          isDark ? 'border-white/10' : 'border-blue-200 bg-white/80'
+        }`}
+      >
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
+          <div>
+            <div className="flex items-center space-x-2 text-blue-500 text-xs font-bold uppercase tracking-wider mb-1">
+              <TrendingUp className="w-4 h-4" />
+              <span>Aggregate Growth Trajectory</span>
+            </div>
+            <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              Average 3.4x Conversion Lift Post-Launch
+            </h3>
+          </div>
+          <div className="flex items-center space-x-3 text-xs font-semibold">
+            <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
+              Q1 - Q4 Benchmark
+            </span>
+          </div>
+        </div>
+
+        {/* Animated Line Chart SVG */}
+        <div className="relative w-full h-48 sm:h-56">
+          <svg className="w-full h-full overflow-visible" viewBox="0 0 800 200" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+
+            {/* Grid lines */}
+            <line x1="0" y1="50" x2="800" y2="50" stroke={isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} strokeDasharray="4 4" />
+            <line x1="0" y1="100" x2="800" y2="100" stroke={isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} strokeDasharray="4 4" />
+            <line x1="0" y1="150" x2="800" y2="150" stroke={isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'} strokeDasharray="4 4" />
+
+            {/* Filled Area */}
+            <path d="M0 180 Q 200 160, 400 100 T 800 20 L 800 200 L 0 200 Z" fill="url(#chartGradient)" />
+
+            {/* Growth Curve Line */}
+            <motion.path
+              d="M0 180 Q 200 160, 400 100 T 800 20"
+              fill="none"
+              stroke="#3B82F6"
+              strokeWidth="4"
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, ease: 'easeInOut' }}
+            />
+
+            {/* Pulsing Data Points */}
+            <circle cx="200" cy="160" r="6" fill="#38BDF8" />
+            <circle cx="400" cy="100" r="7" fill="#3B82F6" />
+            <circle cx="800" cy="20" r="8" fill="#8B5CF6" />
+          </svg>
+        </div>
+      </motion.div>
+
+      {/* Testimonials Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
         {caseStudies.map((item, index) => (
           <motion.div
@@ -73,11 +147,15 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.15 }}
-            className="glass-panel p-8 rounded-3xl flex flex-col justify-between border border-white/10 relative overflow-hidden group hover:border-purple-500/40 transition-all duration-300"
+            className={`p-8 rounded-3xl flex flex-col justify-between border relative overflow-hidden glass-card ${
+              isDark ? 'border-white/10' : 'border-blue-100 bg-white/80'
+            }`}
           >
             {/* Category Tag */}
             <div className="flex items-center justify-between mb-6">
-              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300">
+              <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${
+                isDark ? 'bg-white/5 border-white/10 text-gray-300' : 'bg-blue-50 border-blue-200 text-blue-800'
+              }`}>
                 {item.badge}
               </span>
               <div className="flex items-center space-x-1 text-amber-400">
@@ -89,17 +167,21 @@ export default function Testimonials() {
 
             {/* Metric Highlight */}
             <div className="mb-6">
-              <span className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 tracking-tight block">
+              <span className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 tracking-tight block">
                 {item.metric}
               </span>
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-400 mt-1 block">
+              <span className={`text-xs font-bold uppercase tracking-wider mt-1 block ${
+                isDark ? 'text-gray-400' : 'text-slate-500'
+              }`}>
                 {item.metricLabel}
               </span>
             </div>
 
             {/* Blockquote */}
-            <blockquote className="text-gray-300 text-sm leading-relaxed mb-8 flex-grow italic relative">
-              <Quote className="w-8 h-8 text-white/5 absolute -top-4 -left-2 pointer-events-none" />
+            <blockquote className={`text-sm leading-relaxed mb-8 flex-grow italic relative ${
+              isDark ? 'text-gray-300' : 'text-slate-700'
+            }`}>
+              <Quote className="w-8 h-8 opacity-10 absolute -top-4 -left-2 pointer-events-none" />
               "{item.quote}"
             </blockquote>
 
@@ -108,12 +190,14 @@ export default function Testimonials() {
               <img
                 src={item.avatar}
                 alt={item.author}
-                className="w-12 h-12 rounded-full object-cover border border-white/20"
+                className="w-12 h-12 rounded-full object-cover border border-blue-400/30"
               />
               <div>
-                <h4 className="text-sm font-bold text-white leading-snug">{item.author}</h4>
-                <p className="text-xs text-gray-400">
-                  {item.title}, <span className="text-blue-400 font-medium">{item.company}</span>
+                <h4 className={`text-sm font-bold leading-snug ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                  {item.author}
+                </h4>
+                <p className={`text-xs ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                  {item.title}, <span className="text-blue-500 font-semibold">{item.company}</span>
                 </p>
               </div>
             </div>

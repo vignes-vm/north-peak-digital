@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -7,9 +8,9 @@ import Pricing from './components/Pricing';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 
-function App() {
+function MainLayout() {
   return (
-    <div className="min-h-screen bg-[#0B0F17] text-gray-100 flex flex-col font-sans selection:bg-blue-500 selection:text-white">
+    <div className="min-h-screen flex flex-col font-sans transition-colors duration-300">
       <Navbar />
       <main className="flex-grow pt-24">
         <Hero />
@@ -20,6 +21,14 @@ function App() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <MainLayout />
+    </ThemeProvider>
   );
 }
 

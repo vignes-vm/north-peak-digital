@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Sparkles, Zap, Shield, ArrowRight } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Pricing() {
+  const { isDark } = useTheme();
+  const [isAnnual, setIsAnnual] = useState(false);
+
   const plans = [
     {
       name: 'Launch Pad',
       badge: 'Starter Tier',
-      price: '$4,900',
-      period: 'one-time engagement',
+      price: isAnnual ? '$3,900' : '$4,900',
+      period: 'project engagement',
       description: 'Ideal for early-stage startups needing a world-class MVP landing page or web presence.',
       features: [
         'Single Page High-Converting Architecture',
@@ -25,7 +29,7 @@ export default function Pricing() {
     {
       name: 'Growth Engine',
       badge: 'Most Popular',
-      price: '$12,500',
+      price: isAnnual ? '$9,900' : '$12,500',
       period: 'project basis',
       description: 'Full-stack application development & bespoke growth systems engineered to scale.',
       features: [
@@ -45,7 +49,7 @@ export default function Pricing() {
       name: 'Enterprise Scale',
       badge: 'Bespoke',
       price: 'Custom',
-      period: 'tailored monthly retainer',
+      period: 'monthly retainer',
       description: 'Dedicated team of senior engineers and designers for continuous innovation.',
       features: [
         'Dedicated Dev & UI/UX Team',
@@ -63,30 +67,61 @@ export default function Pricing() {
 
   return (
     <section id="pricing" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Background Accent Mesh */}
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto mb-16">
+      <div className="text-center max-w-3xl mx-auto mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <span className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cyan-400 mb-3 block">
-            Transparent Pricing
+          <span className={`text-xs sm:text-sm font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full border mb-4 inline-block ${
+            isDark ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400' : 'bg-cyan-100 border-cyan-200 text-cyan-800'
+          }`}>
+            Transparent Value Tiers
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          <h2 className={`text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight ${
+            isDark ? 'text-white' : 'text-slate-900'
+          }`}>
             Invest in Engineering Excellence
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-gray-400">
-            Clear, value-driven pricing plans designed for rapid execution and measurable returns.
+          <p className={`mt-4 text-base sm:text-lg ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
+            Select a project package built for immediate speed and enterprise return.
           </p>
         </motion.div>
       </div>
 
-      {/* Pricing Cards */}
+      {/* Annual / One-Time Toggle Switch */}
+      <div className="flex items-center justify-center space-x-4 mb-16">
+        <span className={`text-sm font-semibold ${!isAnnual ? (isDark ? 'text-white' : 'text-slate-900') : 'text-gray-400'}`}>
+          Standard Billing
+        </span>
+
+        <button
+          onClick={() => setIsAnnual(!isAnnual)}
+          className={`w-14 h-8 flex items-center rounded-full p-1 transition-colors duration-300 ${
+            isAnnual ? 'bg-blue-600' : isDark ? 'bg-white/10' : 'bg-slate-300'
+          }`}
+          aria-label="Toggle annual discount"
+        >
+          <motion.div
+            className="w-6 h-6 rounded-full bg-white shadow-md"
+            animate={{ x: isAnnual ? 24 : 0 }}
+            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+          />
+        </button>
+
+        <div className="flex items-center space-x-2">
+          <span className={`text-sm font-semibold ${isAnnual ? (isDark ? 'text-white' : 'text-slate-900') : 'text-gray-400'}`}>
+            Accelerated Growth
+          </span>
+          <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+            Save 20%
+          </span>
+        </div>
+      </div>
+
+      {/* Pricing Cards Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
         {plans.map((plan, index) => {
           const PlanIcon = plan.icon;
@@ -97,56 +132,60 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              className={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 ${
+              className={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 glass-card ${
                 plan.highlighted
-                  ? 'bg-gradient-to-b from-[#1E293B] to-[#0F172A] border-2 border-blue-500 shadow-2xl shadow-blue-500/20 lg:-translate-y-4'
-                  : 'glass-panel border border-white/10 hover:border-white/20'
+                  ? 'gradient-border-glow border-2 border-blue-500 shadow-2xl lg:-translate-y-4'
+                  : isDark
+                  ? 'border-white/10'
+                  : 'border-blue-100 bg-white/80'
               }`}
             >
               {/* Featured Badge */}
               {plan.highlighted && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-bold uppercase tracking-wider shadow-lg flex items-center space-x-1.5">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full gradient-bg-blue text-white text-xs font-bold uppercase tracking-wider shadow-lg flex items-center space-x-1.5 z-20">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>{plan.badge}</span>
                 </div>
               )}
 
               <div>
-                {/* Header */}
+                {/* Card Header */}
                 <div className="flex items-center justify-between mb-4">
                   <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full ${
-                    plan.highlighted ? 'bg-blue-500/20 text-blue-300' : 'bg-white/5 text-gray-400'
+                    plan.highlighted
+                      ? 'bg-blue-500/20 text-blue-400'
+                      : isDark
+                      ? 'bg-white/5 text-gray-400'
+                      : 'bg-blue-50 text-blue-700'
                   }`}>
                     {!plan.highlighted && plan.badge}
                     {plan.highlighted && 'Recommended Plan'}
                   </span>
-                  <PlanIcon className={`w-6 h-6 ${plan.highlighted ? 'text-blue-400' : 'text-gray-400'}`} />
+                  <PlanIcon className={`w-6 h-6 ${plan.highlighted ? 'text-blue-500' : 'text-gray-400'}`} />
                 </div>
 
-                <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+                <h3 className={`text-2xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>{plan.name}</h3>
+                <p className={`text-xs sm:text-sm leading-relaxed mb-6 ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
                   {plan.description}
                 </p>
 
                 {/* Price Display */}
                 <div className="mb-8 pb-6 border-b border-white/10">
                   <div className="flex items-baseline space-x-2">
-                    <span className="text-4xl sm:text-5xl font-black text-white tracking-tight">
+                    <span className={`text-4xl sm:text-5xl font-black tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
                       {plan.price}
                     </span>
-                    <span className="text-xs text-gray-400 uppercase font-semibold">
+                    <span className={`text-xs uppercase font-semibold ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
                       / {plan.period}
                     </span>
                   </div>
                 </div>
 
-                {/* Feature Checklist */}
+                {/* Features List */}
                 <ul className="space-y-3.5 mb-8" aria-label={`${plan.name} features`}>
                   {plan.features.map((feature, fIdx) => (
-                    <li key={fIdx} className="flex items-start space-x-3 text-sm text-gray-300">
-                      <div className={`p-1 rounded-full mt-0.5 ${
-                        plan.highlighted ? 'bg-blue-500/20 text-blue-400' : 'bg-white/10 text-blue-400'
-                      }`}>
+                    <li key={fIdx} className={`flex items-start space-x-3 text-sm ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
+                      <div className="p-1 rounded-full bg-blue-500/20 text-blue-500 mt-0.5">
                         <Check className="w-3.5 h-3.5" />
                       </div>
                       <span className="leading-snug">{feature}</span>
@@ -161,8 +200,10 @@ export default function Pricing() {
                   href="#contact"
                   className={`w-full inline-flex items-center justify-center space-x-2 py-4 rounded-full text-sm font-bold transition-all duration-300 focus:outline-none focus:ring-2 ${
                     plan.highlighted
-                      ? 'gradient-button text-white shadow-lg shadow-blue-500/30 hover:scale-[1.02]'
-                      : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
+                      ? 'gradient-bg-blue text-white shadow-lg shadow-blue-500/30 hover:scale-[1.02] neo-button'
+                      : isDark
+                      ? 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
+                      : 'bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200'
                   }`}
                   aria-label={`Select ${plan.name} pricing package`}
                 >
