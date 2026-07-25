@@ -2,15 +2,15 @@
 
 @layer base {
   :root {
-    --bg-main: #F0F6FF;
+    --bg-main: #F4F8FF;
     --text-main: #0F172A;
-    --text-muted: #475569;
-    --card-bg: rgba(255, 255, 255, 0.75);
-    --card-border: rgba(37, 99, 235, 0.15);
-    --card-hover-border: rgba(37, 99, 235, 0.4);
-    --glow-primary: rgba(37, 99, 235, 0.15);
-    --glow-secondary: rgba(56, 189, 248, 0.15);
-    --neo-shadow: 12px 12px 24px #d1e0f7, -12px -12px 24px #ffffff;
+    --text-muted: #334155;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(37, 99, 235, 0.18);
+    --card-hover-border: rgba(37, 99, 235, 0.5);
+    --glow-primary: rgba(37, 99, 235, 0.18);
+    --glow-secondary: rgba(56, 189, 248, 0.2);
+    --neo-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
   }
 
   .dark {
@@ -51,19 +51,19 @@
 
 .glass-card:hover {
   border-color: var(--card-hover-border);
-  transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 20px 40px -15px var(--glow-primary), var(--neo-shadow);
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 25px 50px -12px var(--glow-primary), var(--neo-shadow);
 }
 
 /* Neo-button depth */
 .neo-button {
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4), 0 4px 10px -2px rgba(37, 99, 235, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .neo-button:hover {
-  box-shadow: 6px 6px 20px rgba(59, 130, 246, 0.4), -6px -6px 20px rgba(56, 189, 248, 0.2);
-  transform: translateY(-2px);
+  box-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.6), 0 6px 15px -2px rgba(56, 189, 248, 0.4);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .gradient-text-blue {
@@ -73,7 +73,7 @@
 }
 
 .gradient-text-blue-light {
-  background: linear-gradient(135deg, #1E40AF 0%, #2563EB 50%, #0284C7 100%);
+  background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 50%, #0284C7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -92,12 +92,12 @@
   inset: -2px;
   border-radius: inherit;
   padding: 2px;
-  background: linear-gradient(90deg, #38BDF8, #3B82F6, #8B5CF6, #38BDF8);
+  background: linear-gradient(90deg, #38BDF8, #2563EB, #8B5CF6, #38BDF8);
   background-size: 300% 300%;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: borderGlow 6s linear infinite;
+  animation: borderGlow 5s linear infinite;
   pointer-events: none;
 }
 
@@ -133,9 +133,9 @@
   background: var(--bg-main);
 }
 ::-webkit-scrollbar-thumb {
-  background: #3B82F6;
+  background: #2563EB;
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2563EB;
+  background: #1D4ED8;
 }

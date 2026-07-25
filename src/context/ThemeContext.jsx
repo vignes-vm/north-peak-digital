@@ -8,7 +8,7 @@ export function ThemeProvider({ children }) {
     if (saved !== null) {
       return saved === 'dark';
     }
-    return true; // Default to dark oceanic blue
+    return false; // Default to crisp light ice-blue theme
   });
 
   useEffect(() => {

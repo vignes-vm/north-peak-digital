@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from './context/ThemeContext';
+import ParticleBackground from './components/ParticleBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -10,9 +11,10 @@ import Footer from './components/Footer';
 
 function MainLayout() {
   return (
-    <div className="min-h-screen flex flex-col font-sans transition-colors duration-300">
+    <div className="relative min-h-screen flex flex-col font-sans transition-colors duration-300">
+      <ParticleBackground />
       <Navbar />
-      <main className="flex-grow pt-24">
+      <main className="flex-grow pt-24 relative z-10">
         <Hero />
         <Services />
         <Testimonials />
